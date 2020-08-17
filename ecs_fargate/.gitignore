@@ -5,3 +5,7 @@
 
 # Module directory
 .terraform/
+
+# aws credentials
+.aws_credentials
+.aws_config*

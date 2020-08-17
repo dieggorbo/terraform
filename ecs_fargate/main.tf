@@ -1,6 +1,6 @@
 
 provider "aws" {
-  shared_credentials_file = "$HOME/.aws/credentials"
+  shared_credentials_file = "../.aws_credentials"
   profile                 = "default"
   region                  = var.aws_region
 }
@@ -54,12 +54,12 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     security_groups  = [aws_security_group.ecs_tasks.id]
-    subnets          = aws_subnet.private.*.id
-    assign_public_ip = true
+    subnets          = var.subnet_internal_id
+    assign_public_ip = false
   }
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.app.id
+    target_group_arn = aws_alb_target_group.tgtgrp-kibana.id
     container_name   = "kibana"
     container_port   = var.app_port
   }

@@ -3,7 +3,7 @@
 resource "aws_security_group" "lb" {
   name        = "kibana-alb-security-group"
   description = "controls access to the ALB"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     protocol    = "tcp"
@@ -24,7 +24,7 @@ resource "aws_security_group" "lb" {
 resource "aws_security_group" "ecs_tasks" {
   name        = "kibana-ecs-tasks-security-group"
   description = "allow inbound access from the ALB only"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = var.vpc_id
 
   ingress {
     protocol        = "tcp"

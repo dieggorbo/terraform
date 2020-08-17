@@ -1,9 +1,24 @@
 ##########################
-# Global variables
+# Global Enviroment variables
 
 variable "aws_region" {
   description = "The AWS region"
   default     = "us-east-1"
+}
+
+variable "vpc_id" {
+  description = "VPC id where this stack will run"
+  default = "vpc-a4c54ac3"
+}
+
+variable "subnet_external_id" {
+  description = "subnet id where the alb will receive traffic"
+  default = ["subnet-01d4d33c", "subnet-10cc551c"]
+}
+
+variable "subnet_internal_id" {
+  description = "subnet id that will handle ecs cluster"
+  default = ["subnet-1dec9978", "subnet-3a3d1210"]
 }
 
 
